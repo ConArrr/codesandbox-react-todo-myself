@@ -17,6 +17,12 @@ export const App = () => {
     setTodoText("");
   };
 
+  const onClickDelete = (index) => {
+    const newIncompleteTodos = [...incompleteTodos];
+    newIncompleteTodos.splice(index, 1);
+    setIncompleteTodos(newIncompleteTodos);
+  };
+
   return (
     <>
       <h1>Todoアプリ</h1>
@@ -38,7 +44,7 @@ export const App = () => {
                 <div style={listRow}>
                   <p style={todoTitle}>{todo}</p>
                   <button>完了</button>
-                  <button>削除</button>
+                  <button onClick={() => onClickDelete(index)}>削除</button>
                 </div>
               </li>
             );
