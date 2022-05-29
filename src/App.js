@@ -2,11 +2,20 @@ import React, { useState } from "react";
 import "./styles.css";
 
 export const App = () => {
+  // state
   const [todoText, setTodoText] = useState("");
   const [incompleteTodos, setIncompleteTodos] = useState([]);
   const [completeTodos, setCompleteTodos] = useState([]);
 
+  // 関数
   const onChangeTodoText = (event) => setTodoText(event.target.value);
+
+  const onClickAdd = () => {
+    const newIncompleteTodos = [...incompleteTodos, todoText];
+    setIncompleteTodos(newIncompleteTodos);
+
+    setTodoText("");
+  };
 
   return (
     <>
@@ -18,16 +27,16 @@ export const App = () => {
           placeholder="TODOを入力"
           style={inputTodo}
         />
-        <button>追加</button>
+        <button onClick={onClickAdd}>追加</button>
       </div>
       <div style={incompleteArea}>
         <p style={title}>未完了TODO</p>
         <ul>
-          {incompleteTodos.map(() => {
+          {incompleteTodos.map((todo, index) => {
             return (
-              <li>
+              <li key={index}>
                 <div style={listRow}>
-                  <p>TODO1</p>
+                  <p style={todoTitle}>{todo}</p>
                   <button>完了</button>
                   <button>削除</button>
                 </div>
@@ -58,7 +67,12 @@ export const App = () => {
 const listRow = {
   display: "flex",
   height: "25px",
-  verticalAlign: "middle"
+  verticalAlign: "middle",
+  margin: "8px 0px"
+};
+
+const todoTitle = {
+  marginRight: "5px"
 };
 
 const inputArea = {
