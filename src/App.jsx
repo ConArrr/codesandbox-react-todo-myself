@@ -51,7 +51,11 @@ export const App = () => {
         todoText={todoText}
         onChangeTodoText={onChangeTodoText}
         onClickAdd={onClickAdd}
+        disabled={incompleteTodos.length >= 5}
       />
+      {incompleteTodos.length >= 5 && (
+        <p style={limitText}>TODOが上限だよ。いったん消化してみよかー</p>
+      )}
       <IncompleteArea
         todos={incompleteTodos}
         onClickComplete={onClickComplete}
@@ -60,4 +64,9 @@ export const App = () => {
       <CompleteArea todos={completeTodos} onClickBack={onClickBack} />
     </>
   );
+};
+
+const limitText = {
+  padding: "5px",
+  color: "red"
 };

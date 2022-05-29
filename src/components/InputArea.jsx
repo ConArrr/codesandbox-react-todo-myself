@@ -1,7 +1,7 @@
 import React from "react";
 
 export const InputArea = (props) => {
-  const { todoText, onChangeTodoText, onClickAdd } = props;
+  const { todoText, onChangeTodoText, onClickAdd, disabled } = props;
   return (
     <div style={inputArea}>
       <input
@@ -9,8 +9,11 @@ export const InputArea = (props) => {
         onChange={onChangeTodoText}
         placeholder="TODOを入力"
         style={inputTodo}
+        disabled={disabled}
       />
-      <button onClick={onClickAdd}>追加</button>
+      <button disabled={disabled} onClick={onClickAdd}>
+        追加
+      </button>
     </div>
   );
 };
